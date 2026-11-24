@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Senhas</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="sobretitulo">SEGURANÇA DIGITAL</p>
+      <h1>Gerenciador de senhas</h1>
+      <p class="subtitulo">Organize suas contas em um só lugar.</p>
+    </div>
+    <button id="novo-btn" class="botao botao-principal">+ Nova senha</button>
+  </header>
+
+  <main class="layout">
+    <section class="painel formulario-painel">
+      <div class="cabecalho-painel">
+        <div>
+          <p class="sobretitulo">CADASTRO</p>
+          <h2 id="titulo-formulario">Adicionar registro</h2>
+        </div>
+      </div>
+
+      <form id="senha-form">
+        <input type="hidden" id="registro-id">
+
+        <label for="servico">Serviço ou site</label>
+        <input id="servico" maxlength="80" placeholder="Ex.: Google, GitHub..." required>
+
+        <label for="usuario">Usuário ou e-mail</label>
+        <input id="usuario" maxlength="120" placeholder="Seu login" required>
+
+        <label for="senha">Senha</label>
+        <div class="campo-senha">
+          <input id="senha" type="password" maxlength="256" placeholder="Digite ou gere uma senha" required>
+          <button type="button" id="mostrar-senha" class="botao-icone" aria-label="Mostrar senha">Ver</button>
+        </div>
+
+        <div class="gerador">
+          <div class="gerador-titulo">
+            <strong>Gerar senha</strong>
+            <span id="tamanho-valor">16 caracteres</span>
+          </div>
+          <input id="tamanho" type="range" min="8" max="64" value="16">
+          <div class="opcoes">
+            <label><input type="checkbox" id="maiusculas" checked> Maiúsculas</label>
+            <label><input type="checkbox" id="minusculas" checked> Minúsculas</label>
+            <label><input type="checkbox" id="numeros" checked> Números</label>
+            <label><input type="checkbox" id="simbolos" checked> Símbolos</label>
+          </div>
+          <button type="button" id="gerar-btn" class="botao botao-secundario">Gerar senha segura</button>
+        </div>
+
+        <label for="observacao">Observação (opcional)</label>
+        <textarea id="observacao" rows="3" maxlength="500" placeholder="Informações adicionais..."></textarea>
+
+        <div class="acoes-formulario">
+          <button type="submit" class="botao botao-principal" id="salvar-btn">Salvar registro</button>
+          <button type="button" class="botao botao-texto" id="cancelar-btn">Limpar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="painel lista-painel">
+      <div class="cabecalho-lista">
+        <div>
+          <p class="sobretitulo">SEUS REGISTROS</p>
+          <h2>Senhas cadastradas</h2>
+        </div>
+        <span id="contador" class="contador">0 registros</span>
+      </div>
+
+      <label class="busca-label" for="busca">Pesquisar</label>
+      <input id="busca" class="busca" placeholder="Buscar por serviço ou usuário...">
+      <div id="lista-senhas" class="lista-senhas" aria-live="polite">
+        <p class="vazio">Carregando registros...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Seus dados são armazenados localmente neste computador.</footer>
+</body>
+</html>
